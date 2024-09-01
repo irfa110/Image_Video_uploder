@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>video uploder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+<div class="container mt-5 shadow alert alert-secondary">
+    <form class='' method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <label for="caption" class="form-label">Caption</label>
+                <input type="text" class="form-control" id="caption" name='caption' required>
+              </div>
+              <div class="col">
+                  <label for="formFile" class="form-label">Video</label>
+                  <input class="form-control" type="file" id="formFile" name='video' required>
+                </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5 " style='margin-left:47%' >Submit</button>
+      </form>
+      <a href="{% url 'index' %}"> <button type="button" class="btn btn-info btn-lg">Home</button></a>
+</div>
+
+    <h1 class='text-center alert alert-danger mt-5'>Show Video</h1>
+    <div class="container px-4 mt-3 py-4">
+        <div class="row gx-5">
+        {%for i in video %}
+          <div class="col-sm-6 mt-3">
+              <h4 class='text-center'>{{i.caption}} <small> <a href=" {% url 'delete' i.id %}"><button class='btn btn-danger'>Delete</button></a> </small></h4>
+              <video width="580" height="400" controls>
+                <source src="{{i.video.url}}" type="video/mp4">
+              </video>
+          </div>
+          {% endfor%}
+        </div>
+      </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

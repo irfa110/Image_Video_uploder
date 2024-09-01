@@ -1,0 +1,34 @@
+<!doctype html>
+{% load myfilter %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>candidate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+        <h1 class='alert alert-danger text-center p-3'>Candidate Detail</h1>
+        <div class="row">
+            <div class="col-sm-10 shadow p-5 offset-sm-1">
+                <h3 class='text-center'><u>Resume</u></h3>
+                <p class='float-end'>Application No: {{candidate.id}} </p>
+                <img class='float-end' src="{{candidate.profile_image.url}}" alt="" class='img-fluid img-thumbnail mt-5' width='150' height='150'> 
+                <p>Name: {{candidate.name}}</p>
+                <p>Date of Birth: {{candidate.dob}}</p> 
+                <p>Gender: {{candidate.gender}}</p>
+                <p>Address: {{candidate.locality}},{{candidate.city}},{{candidate.state}},{{candidate.city}}- {{candidate.pin}}</p>
+                <p>Mobile NO: {{candidate.mobile}}</p>
+                <p>Email ID: {{candidate.email}}</p>
+                <p>Preferred Job Cities: {{candidate.job_city|remove_special:"[]'"}}</p>
+                <p>Attachment: <a href="{{candidate.my_file.url}}">Download</a></p>
+                <div class="text-center">
+                    <a href="/" class='btn btn-danger'>Back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
